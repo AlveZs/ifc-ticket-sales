@@ -1,0 +1,33 @@
+### Get all events
+GET http://localhost:3000/events
+
+### Create an event
+# @name createEvent
+POST http://localhost:3000/events
+Content-Type: application/json
+
+{
+    "name": "New Event",
+    "description": "This is a new event",
+    "date": "2024-07-08T20:09:32",
+    "price": 100
+}
+
+### Event ID var
+@eventId = {{ createEvent.response.body.id }}
+
+### Get event by ID
+GET http://localhost:3000/events/{{eventId}}
+
+### Update an event
+PATCH http://localhost:3000/events/{{eventId}}
+Content-Type: application/json
+
+{
+    "name": "Updated Event",
+    "description": "This is an updated event",
+    "date": "2024-07-10T20:09:32"
+}
+
+### Delete an event
+DELETE http://localhost:3000/events/{{eventId}}
