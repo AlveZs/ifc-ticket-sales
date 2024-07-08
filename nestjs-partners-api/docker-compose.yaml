@@ -1,8 +1,14 @@
 services:
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
   db:
     image: bitnami/postgresql:latest
     ports:
-      - '5432:5432'
+      - 5432:5432
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
