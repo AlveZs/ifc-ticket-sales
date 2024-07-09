@@ -52,6 +52,7 @@ Content-Type: application/json
 ### Reserve a spot
 POST http://localhost:3000/events/{{eventId}}/reserve
 Content-Type: application/json
+X-Api-Token: 123
 
 {
     "spots": ["{{spotName}}"],
