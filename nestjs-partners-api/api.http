@@ -37,11 +37,24 @@ DELETE http://localhost:3000/events/{{eventId}}
 ### Get all spots of an event
 GET http://localhost:3000/events/{{eventId}}/spots
 
-### Create an event
+### Create a spot
 # @name createSpot
 POST http://localhost:3000/events/{{eventId}}/spots
 Content-Type: application/json
 
 {
-    "name": "A1"
+    "name": "A4"
+}
+
+### Event ID var
+@spotName = {{ createSpot.response.body.name }}
+
+### Reserve a spot
+POST http://localhost:3000/events/{{eventId}}/reserve
+Content-Type: application/json
+
+{
+    "spots": ["{{spotName}}"],
+    "ticket_kind": "full",
+    "email": "test@test.com"
 }
