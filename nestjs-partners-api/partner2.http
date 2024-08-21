@@ -1,0 +1,61 @@
+### Buscar eventos
+GET http://localhost:3001/eventos
+
+### Criar um evento
+# @name criarEvento
+POST http://localhost:3001/eventos
+Content-Type: application/json
+
+{
+    "nome": "Novo evento",
+    "descricao": "Este é um novo evento",
+    "data": "2024-07-08T20:09:32",
+    "preco": 100
+}
+
+### Evento ID var
+@eventoId = {{ criarEvento.response.body.id }}
+
+### Get event by ID
+GET http://localhost:3001/eventos/{{eventoId}}
+
+### Update an event
+PATCH http://localhost:3001/eventos/{{eventoId}}
+Content-Type: application/json
+
+{
+    "nome": "Evento atualizado",
+    "descricao": "Este é um evento atualizado",
+    "data": "2024-07-10T20:09:32"
+}
+
+### Deletar um evento
+DELETE http://localhost:3001/eventos/{{eventoId}}
+
+
+### Luger
+### Buscar lugares de um evento
+GET http://localhost:3001/eventos/{{eventoId}}/lugares
+
+### Criar um lugar
+# @name criarLugar
+POST http://localhost:3001/eventos/{{eventoId}}/lugares
+Content-Type: application/json
+
+{
+    "nome": "A1"
+}
+
+### Event ID var
+@nomeLugar = {{ criarLugar.response.body.name }}
+
+### Reservar um lugar
+POST http://localhost:3001/eventos/{{eventoId}}/reservar
+Content-Type: application/json
+X-Api-Token: 123
+
+{
+    "lugares": ["{{nomeLugar}}"],
+    "tipo_ingresso": "inteira",
+    "email": "test@test.com"
+}
