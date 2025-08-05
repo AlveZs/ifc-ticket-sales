@@ -6,10 +6,10 @@ import (
 )
 
 var (
-	ErrEventNameRequired = errors.New("Event name is required")
-	ErrEventPastDate     = errors.New("Event date must be in the future")
-	ErrEventCapacityZero = errors.New("Event capacity must be greater than zero")
-	ErrEventPriceZero    = errors.New("Event price must be greater than zero")
+	ErrEventNameRequired = errors.New("event name is required")
+	ErrEventPastDate     = errors.New("event date must be in the future")
+	ErrEventCapacityZero = errors.New("event capacity must be greater than zero")
+	ErrEventPriceZero    = errors.New("event price must be greater than zero")
 )
 
 type Rating string
@@ -64,4 +64,14 @@ func (event *Event) AddSpot(name string) (*Spot, error) {
 	}
 	event.Spots = append(event.Spots, *spot)
 	return spot, nil
+}
+
+func (s *Spot) Reserve(ticketId string) error {
+	if s.Status == SpotStatusSold {
+		return ErrSpotAlreadyReserved
+	}
+	s.Status = SpotStatusSold
+	s.TicketId = ticketId
+
+	return nil
 }

@@ -14,12 +14,12 @@ const (
 )
 
 var (
-	ErrSpotMinLength       = errors.New("Spot name must be at least 2 characters long")
-	ErrSpotStartNotAlpha   = errors.New("Spot name must start with a letter")
-	ErrSpotEndNotNumber    = errors.New("Spot name must end with a number")
-	ErrInvalidSpotNumber   = errors.New("Invalid spot number")
-	ErrSpotNotFound        = errors.New("Spot not found")
-	ErrSpotAlreadyReserved = errors.New("Spot already reserved")
+	ErrSpotMinLength       = errors.New("spot name must be at least 2 characters long")
+	ErrSpotStartNotAlpha   = errors.New("spot name must start with a letter")
+	ErrSpotEndNotNumber    = errors.New("spot name must end with a number")
+	ErrInvalidSpotNumber   = errors.New("invalid spot number")
+	ErrSpotNotFound        = errors.New("spot not found")
+	ErrSpotAlreadyReserved = errors.New("spot already reserved")
 )
 
 type Spot struct {
