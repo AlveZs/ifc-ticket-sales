@@ -13,7 +13,7 @@ type Partner1 struct {
 
 type Partner1ReservationRequest struct {
 	Spots      []string `json:"spots"`
-	TicketKind string   `json:"ticket_kind"`
+	TicketType string   `json:"ticket_type"`
 	Email      string   `json:"email"`
 }
 
@@ -21,7 +21,7 @@ type Partner1ReservationResponse struct {
 	Id         string `json:"id"`
 	Email      string `json:"email"`
 	Spot       string `json:"spot"`
-	TicketKind string `json:"ticket_kind"`
+	TicketType string `json:"ticket_type"`
 	Status     string `json:"status"`
 	EventId    string `json:"event_id"`
 }
@@ -29,7 +29,7 @@ type Partner1ReservationResponse struct {
 func (partner *Partner1) MakeReservation(req *ReservationRequest) ([]ReservationResponse, error) {
 	partnerReq := Partner1ReservationRequest{
 		Spots:      req.Spots,
-		TicketKind: req.TicketKind,
+		TicketType: req.TicketType,
 		Email:      req.Email,
 	}
 
