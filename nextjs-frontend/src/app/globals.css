@@ -3,8 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --color-primary: "#181E24"
-  --color-secondary: "#2A323C"
+  --color-primary: #181E24;
+  --color-secondary: #2A323C;
+  --auto-fit-cards: repeat(auto-fit, minmax(277px, 1fr));
 }
 
 @theme inline {
@@ -14,9 +15,6 @@
   --color-secondary: var(--color-secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --grid-template-columns: {
-    'auto-fit-cards': 'repeat(auto-fit, minmax(277px, 1fr)',
-  }
 }
 
 @media (prefers-color-scheme: dark) {
