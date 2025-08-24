@@ -6,6 +6,9 @@
   --color-primary: #181E24;
   --color-secondary: #2A323C;
   --auto-fit-cards: repeat(auto-fit, minmax(277px, 1fr));
+  --color-blurple: #7480FF;
+  --color-contrast: #1D232A;
+  --color-text-default:#A6ADBB;
 }
 
 @theme inline {
@@ -13,6 +16,11 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--color-primary);
   --color-secondary: var(--color-secondary);
+  --color-btn-primary: var(--color-blurple);
+  --color-input: var(--color-contrast);
+  --color-bar: var(--color-contrast);
+  --text-color-btn-primary: #050617;
+  --text-color-subtitle: var(--color-blurple);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -26,6 +34,6 @@
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--color-text-default);
   font-family: Arial, Helvetica, sans-serif;
 }
