@@ -2,30 +2,14 @@ import { EventCard } from "./components/EventCard";
 import { Title } from "./components/Title";
 import { EventModel } from "./models";
 
-export default function HomePage() {
-  const events: EventModel[] = [
-    {
-      id: "1",
-      name: "Test",
-      organization: "Productions",
-      date: "2022-12-31T00:00:00.000Z",
-      location: "Salvador",
-    },
-    {
-      id: "2",
-      name: "Test",
-      organization: "Productions",
-      date: "2022-12-31T00:00:00.000Z",
-      location: "Salvador",
-    },
-    {
-      id: "3",
-      name: "Test",
-      organization: "Productions",
-      date: "2022-12-31T00:00:00.000Z",
-      location: "Salvador",
-    }
-  ];
+export async function getEvents(): Promise<EventModel[]> {
+  const response = await fetch(`${process.env.API_URL}/events`);
+
+  return (await response.json()).events;
+}
+
+export default async function HomePage() {
+  const events = await getEvents();
   return (
     <main className="mt-10 flex flex-col">
       <Title>Available Events</Title>
