@@ -154,8 +154,8 @@ export default async function SpotsLayoutPage({
             Check out the event prices
           </h1>
           <p>
-            Full: {"$ 100.00"} <br />
-            Half price: {`$ 50.00`}
+            Full: {dollarStringFormatter(event.price)} <br />
+            Half price: {dollarStringFormatter(event.price / 2)}
           </p>
           <div className="flex flex-col">
             <TicketTypeSelect defaultValue={ticketType} price={event.price}/>
