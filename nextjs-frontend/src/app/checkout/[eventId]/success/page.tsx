@@ -1,3 +1,4 @@
+import { clearSpotsAction } from "@/app/actions";
 import { Title } from "@/app/components/Title";
 import { EventModel } from "@/app/models";
 import { localeDateFormatter } from "@/utils";
@@ -18,7 +19,7 @@ export default async function CheckoutSuccessPage({
 }: {
   params: { eventId: string };
 }) {
-  const { eventId } = params;
+  const { eventId } = await params;
   const event = await getEvent(eventId);
   const cookieStore = await cookies();
   const selectedSpots: string[] = JSON.parse(
@@ -39,7 +40,7 @@ export default async function CheckoutSuccessPage({
         <p className="font-semibold text-white">
           Chosen spots: {selectedSpots.join(", ")}
         </p>
-        <Link href={"/"}>
+        <Link href={"/"} onClick={clearSpotsAction}>
           <button 
             className="rounded-lg w-full bg-btn-primary
               py-4 px-4 text-sm font-semibold uppercase text-btn-primary
