@@ -5,13 +5,19 @@ import Link from "next/link";
 import { TicketType, TicketTypeSelect } from "./TicketTypeSelect";
 import { cookies } from "next/headers";
 import { dollarStringFormatter } from "@/utils";
+import { EventImage } from "@/app/components/EventImage";
 
 export async function getSpots(eventId: string): Promise<{
   event: EventModel;
   spots: SpotModel[];
 }> {
   const response = await fetch(
-    `${process.env.API_URL}/events/${eventId}/spots`
+    `${process.env.API_URL}/events/${eventId}/spots`,
+    {
+      next: {
+        tags: [`events/${eventId}`],
+      }
+    }
   );
 
   return response.json();
@@ -70,11 +76,11 @@ export default async function SpotsLayoutPage({
   return (
     <main className="mt-10">
       <div className="flex w-[1176px] max-w-full flex-row flex-wrap justify-center gap-x-8 rounded-2xl bg-secondary p-4 md:justify-normal">
-        <img src="/image.png" alt="" />
+        <EventImage src={event.image_url} alt={event.name} />
         <div className="flex max-w-full flex-col gap-y-6">
           <div className="flex flex-col gap-y-2">
             <p className="text-sm font-semibold uppercase text-subtitle">
-              {new Date(event.date).toLocaleDateString("pt-BR", {
+              {new Date(event.date).toLocaleDateString("en-US", {
                 weekday: "long",
                 day: "2-digit",
                 month: "2-digit",
@@ -119,7 +125,7 @@ export default async function SpotsLayoutPage({
                           spotLabel={spot.name.slice(1)}
                           eventId={event.id}
                           selected={selectedSpots.includes(spot.name)}
-                          disabled={false}
+                          disabled={spot.status === "sold"}
                         />
                       );
                     })}
