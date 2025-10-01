@@ -24,7 +24,7 @@ func (repository *pgEventRepository) CreateEvent(event *domain.Event) error {
 	`
 
 	_, err := repository.db.Query(query, event.Id, event.Name, event.Location, event.Organization,
-		event.Rating, event.Date.Format("2006-01-02 15:04:05"), event.ImageUrl, event.Capacity,
+		event.Rating, event.Date.Format("2006-01-02T15:04:05Z"), event.ImageUrl, event.Capacity,
 		event.Price, event.PartnerId)
 
 	return err
@@ -113,7 +113,7 @@ func (repository *pgEventRepository) FindEventByID(eventId string) (*domain.Even
 		}
 
 		if event == nil {
-			eventDateParsed, err := time.Parse("2006-01-02 15:04:05", eventDate.String)
+			eventDateParsed, err := time.Parse("2006-01-02T15:04:05Z", eventDate.String)
 			if err != nil {
 				return nil, err
 			}
@@ -284,7 +284,7 @@ func (repository *pgEventRepository) ListEvents() ([]domain.Event, error) {
 
 		event, exists := eventMap[eventId.String]
 		if !exists {
-			eventDateParsed, err := time.Parse("2006-01-02 15:04:05", eventDate.String)
+			eventDateParsed, err := time.Parse("2006-01-02T15:04:05Z", eventDate.String)
 			if err != nil {
 				return nil, err
 			}
